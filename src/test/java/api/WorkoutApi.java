@@ -10,6 +10,7 @@ import io.restassured.specification.RequestSpecification;
 public class WorkoutApi {
 
     private final RequestSpecification spec;
+    private String authToken;
 
     public WorkoutApi(String baseUrl){
         this.spec = RequestSpecFactory.getDefaultSpec(baseUrl);
@@ -18,6 +19,7 @@ public class WorkoutApi {
     public Response getAllWorkouts(){
         return given()
                 .spec(spec)
+                .header("Authorization", "Bearer " + authToken)
                 .when()
                 .get("/workouts");
     }
@@ -27,5 +29,9 @@ public class WorkoutApi {
                 .spec(spec)
                 .when()
                 .get("/workouts/" + id);
+    }
+
+    public void setAuthToken(String token){
+        this.authToken = token;
     }
 }

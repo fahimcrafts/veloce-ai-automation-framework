@@ -1,5 +1,6 @@
 package tests;
 
+import api.UserApi;
 import api.WorkoutApi;
 import base.BaseTest;
 import io.restassured.response.Response;
@@ -9,12 +10,16 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.Matchers.*;
 
 public class WorkoutApiTest extends BaseTest {
-
-    WorkoutApi workoutApi = new WorkoutApi(BASE_URL);
-
     @Test
     @DisplayName("Validate workout workflow using API chaining")
     void shouldValidateWorkoutWorkFlow() {
+
+        UserApi userApi = new UserApi(BASE_URL);
+        WorkoutApi workoutApi = new WorkoutApi(BASE_URL);
+
+        userApi.loginUser("testuser@example.com", "password123");
+
+        workoutApi.setAuthToken(userApi.getAuthToken());
 
         Response response = workoutApi.getAllWorkouts();
 
@@ -27,7 +32,5 @@ public class WorkoutApiTest extends BaseTest {
                 .body("id", equalTo(id))
                 .body("name", notNullValue())
                 .body("duration", greaterThan(0));
-
-
     }
 }
