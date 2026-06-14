@@ -5,12 +5,10 @@ import base.BaseTest;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import io.restassured.RestAssured;
 
-import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
-public class APIWorkoutFlowTest extends BaseTest {
+public class WorkoutApiTest extends BaseTest {
 
     WorkoutApi workoutApi = new WorkoutApi(BASE_URL);
 

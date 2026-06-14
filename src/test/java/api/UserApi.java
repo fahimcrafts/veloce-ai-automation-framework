@@ -12,6 +12,7 @@ import static io.restassured.RestAssured.when;
 
 public class UserApi {
     private final RequestSpecification spec;
+    private String authToken;
 
     public UserApi(String baseUrl){
         this.spec = RequestSpecFactory.getDefaultSpec(baseUrl);
@@ -34,16 +35,23 @@ public class UserApi {
 
     public Response loginUser(String email, String password){
         Map<String, String> requestBody = new HashMap<>();
-
         requestBody.put("email", email);
         requestBody.put("password", password);
 
-        return given()
+        Response response = given()
                 .spec(spec)
                 .contentType("application/json")
                 .body(requestBody)
                 .when()
                 .post("/users/login");
+
+        this.authToken = response.jsonPath().getString("token");
+
+        return response;
+    }
+
+    public String getAuthToken(){
+        return authToken;
     }
 
 }

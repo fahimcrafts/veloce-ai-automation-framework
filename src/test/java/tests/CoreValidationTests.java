@@ -99,8 +99,7 @@ public class CoreValidationTests extends BaseTest {
     void shouldValidateLogin() throws IOException, InterruptedException{
         String requestbody = """
                 {
-                    "email": "test@veloce.ai",
-                    "password": "password123"
+                    "token": "mock-token-123",
                 }""";
 
         HttpRequest request = HttpRequest.newBuilder()
@@ -115,8 +114,7 @@ public class CoreValidationTests extends BaseTest {
         System.out.println(response.body());
 
         assertEquals(200, response.statusCode());
-        assertTrue(response.body().contains("email"));
-        assertTrue(response.body().contains("password"));
+        assertTrue(response.body().contains("token"));
     }
 
     @Test

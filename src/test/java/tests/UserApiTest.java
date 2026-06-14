@@ -42,15 +42,13 @@ public class UserApiTest extends BaseTest {
                 "password123"
         );
 
-        System.out.println("Status Code: " + response.getStatusCode());
-
-        response.prettyPrint();
-
         assertEquals(200, response.getStatusCode());
+
+        System.out.println("TOKEN: " + userApi.getAuthToken());
     }
 
     @Test
-    public void invalidPasswordLoginDebug(){
+    public void invalidPasswordShouldReturn401(){
         Response response = userApi.loginUser(
                 "testuser@example.com",
                 "wrongpassword"
