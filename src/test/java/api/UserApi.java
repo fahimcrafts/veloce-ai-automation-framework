@@ -17,14 +17,16 @@ public class UserApi {
         this.spec = RequestSpecFactory.getDefaultSpec(baseUrl);
     }
 
-    public Response registerUser(String name, String email){
+    public Response registerUser(String name, String email, String password){
         Map<String, String> requestBody = new HashMap<>();
 
         requestBody.put("name", name);
         requestBody.put("email", email);
+        requestBody.put("password", password);
 
         return given()
                 .spec(spec)
+                .contentType("application/json")
                 .body(requestBody)
                 .when()
                 .post("/users/register");
