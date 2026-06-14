@@ -11,15 +11,13 @@ import static org.hamcrest.Matchers.*;
 
 public class WorkoutApiTest extends BaseTest {
     @Test
-    @DisplayName("Validate workout workflow using API chaining")
+    @DisplayName("Validate authenticated workout workflow using API chaining")
     void shouldValidateWorkoutWorkFlow() {
 
         UserApi userApi = new UserApi(BASE_URL);
         WorkoutApi workoutApi = new WorkoutApi(BASE_URL);
 
         userApi.loginUser("testuser@example.com", "password123");
-
-        workoutApi.setAuthToken(userApi.getAuthToken());
 
         Response response = workoutApi.getAllWorkouts();
 

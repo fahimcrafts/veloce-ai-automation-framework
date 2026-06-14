@@ -3,6 +3,7 @@ package api;
 import config.RequestSpecFactory;
 import io.restassured.response.Response;
 import models.Workout;
+import auth.SessionManager;
 
 import static io.restassured.RestAssured.given;
 import io.restassured.specification.RequestSpecification;
@@ -19,7 +20,7 @@ public class WorkoutApi {
     public Response getAllWorkouts(){
         return given()
                 .spec(spec)
-                .header("Authorization", "Bearer " + authToken)
+                .header("Authorization", "Bearer " + SessionManager.getToken())
                 .when()
                 .get("/workouts");
     }
@@ -29,9 +30,5 @@ public class WorkoutApi {
                 .spec(spec)
                 .when()
                 .get("/workouts/" + id);
-    }
-
-    public void setAuthToken(String token){
-        this.authToken = token;
     }
 }

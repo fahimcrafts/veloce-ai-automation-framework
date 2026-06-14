@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.when;
+import auth.SessionManager;
 
 public class UserApi {
     private final RequestSpecification spec;
@@ -46,6 +46,7 @@ public class UserApi {
                 .post("/users/login");
 
         this.authToken = response.jsonPath().getString("token");
+        SessionManager.setToken(authToken);
 
         return response;
     }
