@@ -3,6 +3,7 @@ package tests;
 import api.UserApi;
 import api.WorkoutApi;
 import base.BaseTest;
+import config.ApiFactory;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,8 +15,10 @@ public class WorkoutApiTest extends BaseTest {
     @DisplayName("Validate authenticated workout workflow using API chaining")
     void shouldValidateWorkoutWorkFlow() {
 
-        UserApi userApi = new UserApi(BASE_URL);
-        WorkoutApi workoutApi = new WorkoutApi(BASE_URL);
+        ApiFactory apiFactory = new ApiFactory(BASE_URL);
+
+        WorkoutApi workoutApi = apiFactory.workoutApi();
+        UserApi userApi = apiFactory.userApi();
 
         userApi.loginUser("testuser@example.com", "password123");
 
