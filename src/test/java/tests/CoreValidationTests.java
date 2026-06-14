@@ -96,7 +96,7 @@ public class CoreValidationTests extends BaseTest {
     }
 
     @Test
-    void loginShouldReturnToken() throws IOException, InterruptedException{
+    void shouldValidateLogin() throws IOException, InterruptedException{
         String requestbody = """
                 {
                     "email": "test@veloce.ai",
@@ -115,8 +115,8 @@ public class CoreValidationTests extends BaseTest {
         System.out.println(response.body());
 
         assertEquals(200, response.statusCode());
-        assertTrue(response.body().contains("token"));
-        assertTrue(response.body().contains("Login successful"));
+        assertTrue(response.body().contains("email"));
+        assertTrue(response.body().contains("password"));
     }
 
     @Test

@@ -32,5 +32,19 @@ public class UserApi {
                 .post("/users/register");
     }
 
+    public Response loginUser(String email, String password){
+        Map<String, String> requestBody = new HashMap<>();
+
+        requestBody.put("email", email);
+        requestBody.put("password", password);
+
+        return given()
+                .spec(spec)
+                .contentType("application/json")
+                .body(requestBody)
+                .when()
+                .post("/users/login");
+    }
+
 }
 

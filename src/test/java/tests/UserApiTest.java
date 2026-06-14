@@ -34,4 +34,29 @@ public class UserApiTest extends BaseTest {
 
         assertEquals(409, response.getStatusCode());
     }
+
+    @Test
+    public void validUserCanLogin(){
+        Response response = userApi.loginUser(
+                "testuser@example.com",
+                "password123"
+        );
+
+        System.out.println("Status Code: " + response.getStatusCode());
+
+        response.prettyPrint();
+
+        assertEquals(200, response.getStatusCode());
+    }
+
+    @Test
+    public void invalidPasswordLoginDebug(){
+        Response response = userApi.loginUser(
+                "testuser@example.com",
+                "wrongpassword"
+        );
+
+        assertEquals(401, response.getStatusCode());
+        assertEquals("Invalid credentials", response.jsonPath().getString("error"));
+    }
 }
