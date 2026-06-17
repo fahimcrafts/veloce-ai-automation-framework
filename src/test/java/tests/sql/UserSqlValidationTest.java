@@ -18,5 +18,6 @@ public class UserSqlValidationTest {
 
         assertEquals("Jeff Nippard", dbUser.getName());
         assertEquals(email, dbUser.getEmail());
+        assertEquals(1, dbUser.getId());
     }
 }
