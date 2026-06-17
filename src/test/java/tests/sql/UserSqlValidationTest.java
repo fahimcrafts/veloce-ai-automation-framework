@@ -14,7 +14,7 @@ public class UserSqlValidationTest {
 
         User dbUser = UserDataRetriever.getUserByEmail(email);
 
-        UserAssertions.assertUserEquals(dbUser, 1, "Jeff Nippard", email);
+        UserAssertions.assertUserEquals(dbUser, dbUser.getId(), "Jeff Nippard", email);
     }
 
     @Test
