@@ -1,6 +1,6 @@
 package debug;
 
-import utils.DBConnectionManager;
+import database.DBConnectionManager;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
