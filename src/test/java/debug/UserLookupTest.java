@@ -5,10 +5,8 @@ import models.User;
 
 public class UserLookupTest {
     public static void main(String[] args) {
-        User user = UserDataRetriever.getUserById(1);
+        User user = UserDataRetriever.getUserByEmail("jeffN@email.com");
 
-        System.out.println(user.getId());
         System.out.println(user.getName());
-        System.out.println(user.getEmail());
     }
 }
