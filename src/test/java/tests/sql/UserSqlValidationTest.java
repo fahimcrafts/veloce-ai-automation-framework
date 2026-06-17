@@ -3,6 +3,7 @@ package tests.sql;
 import database.UserDataRetriever;
 import models.User;
 import org.junit.jupiter.api.Test;
+import assertions.UserAssertions;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,11 +14,7 @@ public class UserSqlValidationTest {
 
         User dbUser = UserDataRetriever.getUserByEmail(email);
 
-        assertNotNull(dbUser);
-
-        assertEquals("Jeff Nippard", dbUser.getName());
-        assertEquals(email, dbUser.getEmail());
-        assertEquals(1, dbUser.getId());
+        UserAssertions.assertUserEquals(dbUser, 1, "Jeff Nippard", email);
     }
 
     @Test
