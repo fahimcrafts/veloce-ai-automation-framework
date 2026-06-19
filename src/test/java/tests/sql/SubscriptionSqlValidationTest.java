@@ -22,4 +22,11 @@ public class SubscriptionSqlValidationTest {
                 true
         );
     }
+
+    @Test
+    void shouldReturnNullForNonExistentSubscription(){
+        Subscription subscription = SubscriptionDataRetriever.getSubscriptionByUserId(99999);
+
+        assertNull(subscription);
+    }
 }
